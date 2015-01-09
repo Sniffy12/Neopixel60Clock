@@ -1,7 +1,7 @@
 # Neopixel60Clock
 
 
-![my image](Sniffy12/Neopixel60Clock/blob/master/Clock%20Diagram.png)
+![my image](https://github.com/Sniffy12/Neopixel60Clock/blob/master/Clock%20Diagram.png)
 Created a clock that runs on an DS1307 RealTime Clock.  
 It has 4 different clock forms, selectable via button press.  
 The seconds, minutes, and hour can be adjusted with button presses as well.  
