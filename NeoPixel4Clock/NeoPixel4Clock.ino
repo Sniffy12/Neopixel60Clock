@@ -3,9 +3,9 @@
 #include <ClockLib.h>
 
 // define pins
-#define PIN 13
-#define MINBUTTON 12
-#define HOURBUTTON 11
+#define PIN 12
+#define MINBUTTON 11
+#define HOURBUTTON 10
 #define TOGGLE 4
 #define DIMMER 5
 #define PHOTORES A1
@@ -22,10 +22,10 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 
 byte hourval, minuteval, secondval;                  // holds the time
 byte pixelColorRed, pixelColorGreen, pixelColorBlue; // holds color values
-int dimmer = 0, toggle = 0;                          // holds button press numbers
-int sensorValue, mainLights, hourLights;             // holds brightness values for lights
+int dimmer = 2, toggle = 0;                          // holds button press numbers
+int hourLights, mainLights = 0;             // holds brightness values for lights
 int photoResistMin = 500, photoResistMax = 501;      // holds ranges for room brightness
-int maxBright, maxBrightTick = 0, brightness;        // holds maximum brightness based on sensorValue
+int maxBright = 64, maxBrightTick = 2;      // holds maximum brightness based on POT
 
 void setup() {
   pinMode(MINBUTTON,INPUT);
@@ -35,28 +35,33 @@ void setup() {
   
   Wire.begin();        	// Begin I2C
   Serial.begin(9600);
-  
   strip.begin();
-  strip.show(); // Initialize all pixels to 'off'
-  updateTime(); // initialize all time values
 }
 
 void loop() { 
-  strip.setBrightness(brightness);
+  
+  updateTimeValues();
+  
   if (toggle == 0) simpleClock();
   
-  else if (toggle == 1) onlineClock();
+  else if (toggle == 1) adafruitClock();
   
-  else if (toggle == 2) rainbowClock();
+  else if (toggle == 2) rainbowVoidClock();
   
   else easyClock();
+  
+  strip.show(); // display clock
     
   brightnessRangeUpdate(); // updates brightness maximum and minimum
   updateLightBright();  // updates brightness based on POT and PHOTORESISTOR
-  toggleCheck();  // checks to see if the toggle button has been pressed to change clocks
-  dimmerCheck();  // checks if the dimmer button has been pressed
-  minuteCheck();  // checks if minute and hour have been changed
-  hourCheck();
+  
+  toggleButtonCheck();  // checks to see if the toggle button has been pressed to change clocks
+  dimmerButtonCheck();  // checks if the dimmer button has been pressed
+  
+  minuteButtonCheck();  // checks if minute and hour have been changed
+  hourButtonCheck();
+
+  delay(100);
 }
 
 

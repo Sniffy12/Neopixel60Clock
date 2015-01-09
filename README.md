@@ -6,3 +6,11 @@ This reprograms the RTC.
 A 4th button allows the use of a potentiometer to set the 
 brightness of different parts of the clock (as well as choosing colors to display on the clock).  
 A photoresistor also detects room brightness and adjusts the clock intensity accordingly.
+
+
+The folder contains several tabs for the same sketch.  Drop the folder into your Arduino folder
+and open from there.
+
+The clock uses a small library I put together to read and set the minutes, seconds, and hours.
+It is included here.
+
