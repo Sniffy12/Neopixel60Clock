@@ -14,3 +14,6 @@ and open from there.
 The clock uses a small library I put together to read and set the minutes, seconds, and hours.
 It is included here.
 
+Each clock requires an initial time update and a final strip.show(), this is handled
+outside of each clocks function.  Keep that in mind if you wanted to take a single clock
+and repurpose it.
