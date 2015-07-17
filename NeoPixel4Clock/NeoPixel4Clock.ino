@@ -6,8 +6,8 @@
 #define PIN 12
 #define MINBUTTON 11
 #define HOURBUTTON 10
-#define TOGGLE 4
-#define DIMMER 5
+#define TOGGLE 9
+#define DIMMER 8
 #define PHOTORES A1
 #define POT A0
 
